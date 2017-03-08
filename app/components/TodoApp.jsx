@@ -1,10 +1,13 @@
 const React = require('react');
 const TodoList = require('TodoList');
 const TodoForm = require('TodoForm');
+const TodoSearch = require('TodoSearch');
 
 const TodoApp = React.createClass({
   getInitialState: function () {
       return {
+        showCompleted: false,
+        searchText: '',
         todos: [
           {
           id: 1,
@@ -27,6 +30,12 @@ const TodoApp = React.createClass({
   handleAddTodo: function (text) {
     alert('new todo :' + text);
   },
+  handleSearch: function (showCompleted, searchText) {
+    this.setState({
+      showCompleted,
+      searchText: searchText.toLowerCase()
+    })
+  },
   render: function () {
     var renderAddTodoForm =  () => {
       return <TodoForm onAddTodo={this.handleAddTodo}/>
@@ -34,6 +43,7 @@ const TodoApp = React.createClass({
     var {todos} = this.state;
     return (
       <div>
+        <TodoSearch onSearch={this.handleSearch}/>
         <TodoList todos={todos} />
         {renderAddTodoForm()}
       </div>
