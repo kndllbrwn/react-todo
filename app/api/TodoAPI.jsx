@@ -1,4 +1,5 @@
 var $ = require('jquery');
+const moment = require('moment');
 
 module.exports = {
     setTodos: function (todos) {
